@@ -1,7 +1,11 @@
 var uainfo = navigator.userAgentData;
 //console.log(uainfo);
-document.getElementById("uaDataP").innerHTML =
-JSON.stringify(
-  uainfo.getHighEntropyValues(['fullVersionList','architecture','bitness','formFactor','model','wow64']).then((res)=>{console.log(res); return res;}),
-  2
-);
+
+var uavals = uainfo.getHighEntropyValues(['fullVersionList','architecture','bitness','formFactor','model','wow64'])
+  .then(
+    (res)=>{
+      console.log(res);
+      document.getElementById("uaDataP").innerHTML = JSON.stringify(res,2);
+      return res;
+    }
+  );
